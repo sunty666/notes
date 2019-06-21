@@ -1,0 +1,36 @@
+﻿=========================================
+用户管理:
+useradd hdfs  ##添加hdfs用户
+passwd hdfs   ##修改密码
+groupadd hadoop ##创建一个新的用户组
+usermod -g hadoop hdfs ##将baby用户改到root组,小g指定的组，是用户的主组
+groups hdfs   ## 查看hdfs用户属于哪个组
+=========================================
+chmod   ## 修改文件权限   u-所有者,g-所属组,o-其他人;
+=========================================
+nohup java -jar XXX.jar
+nohup java -jar XXX.jar &
+nohup java -jar XXX.jar >temp.txt &
+nohup java -jar XXX.jar >/dev/null 2>&1 &
+=========================================
+批量删除文件或者日志文件
+ls  *.txt  |  xargs  rm  -rf  ##产生的效应：rm -rf 1.txt 2.txt
+find ./ -name *.txt -exec rm -rf {} \;
+##产生的效应：rm -rf 1.txt rm -rf 2.txt
+=========================================
+date -d "1 day ago" +%Y-%m-%d   ##  获取前一日的日期
+date -d "+1 day" +%Y-%m-%d    ## 获取后一日的日期
+=========================================
+crontab ##分钟   小时   天   月   星期   命令/脚本
+=========================================
+test  -e  /file ##判断文件是否存在
+=========================================
+for i in{1,2,3,4,5};do ssh hadoop$i 'hostname;/etc/init.d/zookeeper-server status';done
+=========================================
+hdfs dfs -cat /$path/ |awk -F "\t" '{print $N}' |sort |uniq    ##检查某一列(N)数据
+hdfs dfs -cat /$path/ |awk -F "\t" '{print NF}' |sort |uniq    ##校验行数
+hdfs dfs -cat /$path/ |awk -F "\t" '{print length($N)}' |sort |uniq   ##检查某一列(N)数据长度
+hdfs dfs -cat /$path/ |awk -F "\t" '{if length($1)==13 {print $1}}' |head -10
+=========================================
+
+
